@@ -14,15 +14,15 @@ import {
 import { createReadStream } from 'fs';
 import { join } from 'path';
 import { MemeService } from './meme.service';
-@Controller('/meme.jpg')
+@Controller('/meme')
 export class MemeController {
   constructor(private readonly memeService: MemeService) {}
 
   @Get(':subreddit')
   @Header('Cache-Control', 'no-cache,max-age=0,no-store,s-maxage=0,proxy-revalidate',)
   async getMemeSubredit(@Param('subreddit') subreddit: string) {
-    console.log(subreddit.split('.')[0]);
-    return await this.memeService.getMeme(subreddit.split('.')[0]);
+    // console.log(subreddit.split('.')[0]);
+    return await this.memeService.getMeme(subreddit);
   }
   @Get()
   @Header('Cache-Control', 'no-cache,max-age=0,no-store,s-maxage=0,proxy-revalidate')

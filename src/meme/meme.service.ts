@@ -35,7 +35,7 @@ function deleteFiles(files, callback) {
       if (err) {
         callback(err);
         return;
-      } else if (i <= 0) {
+      } else if (i <= 5) {
         callback(null);
       }
     });
