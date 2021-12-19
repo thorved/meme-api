@@ -9,6 +9,7 @@ import {
   UseGuards,
   Param,
   StreamableFile,
+  Header,
 } from '@nestjs/common';
 import { createReadStream } from 'fs';
 import { join } from 'path';
@@ -18,11 +19,13 @@ export class MemeController {
   constructor(private readonly memeService: MemeService) {}
 
   @Get(':subreddit')
+  @Header('Cache-Control', 'none,must-revalidate',)
   async getMemeSubredit(@Param('subreddit') subreddit: string) {
-    console.log(subreddit.split(".")[0]);
-    return await this.memeService.getMeme(subreddit.split(".")[0]);
+    console.log(subreddit.split('.')[0]);
+    return await this.memeService.getMeme(subreddit.split('.')[0]);
   }
   @Get()
+  @Header('Cache-Control', 'none,must-revalidate')
   async getMeme(@Param('subreddit') subreddit: string) {
     console.log(subreddit);
     return await this.memeService.getMeme(null);

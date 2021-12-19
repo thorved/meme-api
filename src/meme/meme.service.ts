@@ -62,7 +62,7 @@ export class MemeService {
       var url = `https://meme-api.herokuapp.com/gimme/${subreddit}`;
     }
 
-    return this.httpService.get(url).pipe(
+    return this.httpService.get(url,).pipe(
       map(async (res) => {
         console.log(res.data['url']);
         var filename = Math.random().toString(16).slice(2).toString();
