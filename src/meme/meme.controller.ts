@@ -25,7 +25,7 @@ export class MemeController {
     return await this.memeService.getMeme(subreddit.split('.')[0]);
   }
   @Get()
-  @Header('Cache-Control', 'none')
+  @Header('Cache-Control', 'no-cache,max-age=0,no-store,s-maxage=0,proxy-revalidate')
   async getMeme(@Param('subreddit') subreddit: string) {
     console.log(subreddit);
     return await this.memeService.getMeme(null);
