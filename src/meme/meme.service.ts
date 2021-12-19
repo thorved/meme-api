@@ -72,7 +72,7 @@ export class MemeService {
               join(process.cwd(), './img/' + filename),
             );
 
-            return new StreamableFile(file);
+            return new StreamableFile(file, {type: 'image/jpeg',disposition: 'inline'});
           })
           .catch((err) => {});
       }),
