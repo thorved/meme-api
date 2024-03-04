@@ -23,5 +23,5 @@ COPY --from=builder /node/package*.json /node/
 COPY --from=builder /node/node_modules/ /node/node_modules/
 COPY --from=builder /node/dist/ /node/dist/
 COPY --from=builder /node/img/ /node/img/
-
+EXPOSE 3000
 CMD ["node", "dist/main.js"]
