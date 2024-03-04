@@ -57,9 +57,9 @@ export class MemeService {
       });
     });
     if (subreddit === null) {
-      var url = `https://meme-api.herokuapp.com/gimme/`;
+      var url = `https://meme-api.com/gimme/`;
     } else {
-      var url = `https://meme-api.herokuapp.com/gimme/${subreddit}`;
+      var url = `https://meme-api.com/gimme/${subreddit}`;
     }
 
     return this.httpService.get(url,).pipe(
