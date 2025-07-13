@@ -1,0 +1,20 @@
+# Go build artifacts
+meme-api
+*.exe
+*.out
+*.test
+
+# Dependency directories
+vendor/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker artifacts
+*.log
