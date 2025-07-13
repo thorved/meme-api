@@ -44,7 +44,7 @@ MIT. Because why not?
 ## Example Meme (Because You Deserve It)
 
 <div align="center">
-  <img src="https://meme.ved.yt/meme/" alt="Meme" width="400" />
+  <img src="https://meme.ved.yt/meme" alt="Meme" width="400" />
 </div>
 
 ## Sarcastic Credit

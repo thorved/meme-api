@@ -25,7 +25,7 @@ WORKDIR /root/
 COPY --from=builder /app/meme-api .
 
 # Expose port (change if your app uses a different port)
-EXPOSE 8080
+EXPOSE 3000
 
 # Command to run
 CMD ["./meme-api"]
