@@ -1,27 +1,31 @@
-FROM node:17.3-alpine as builder
+# Start from the official Golang image for building
+FROM golang:1.24.5 AS builder
 
-ENV NODE_ENV build
+WORKDIR /app
 
-WORKDIR /node
+# Copy go mod and sum files
+COPY go.mod go.sum ./
 
-COPY . /node
+# Download dependencies
+RUN go mod download
 
-RUN npm ci 
-RUN npm run build 
-RUN npm prune --production
+# Copy the rest of the source code
+COPY . .
 
-# ---
+# Build the Go app
+RUN CGO_ENABLED=0 GOOS=linux go build -o meme-api ./cmd/meme-api/main.go
 
-FROM node:17.3-alpine
+# Use a minimal base image for running
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
 
-ENV NODE_ENV production
+WORKDIR /root/
 
+# Copy the built binary from builder
+COPY --from=builder /app/meme-api .
 
-WORKDIR /node
+# Expose port (change if your app uses a different port)
+EXPOSE 8080
 
-COPY --from=builder /node/package*.json /node/
-COPY --from=builder /node/node_modules/ /node/node_modules/
-COPY --from=builder /node/dist/ /node/dist/
-COPY --from=builder /node/img/ /node/img/
-EXPOSE 3000
-CMD ["node", "dist/main.js"]
+# Command to run
+CMD ["./meme-api"]
